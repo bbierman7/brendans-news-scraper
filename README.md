@@ -1,3 +1,3 @@
 # news-scraper
 
-https://brendans-news-finder.herokuapp.com/
+https://brendans-news-scraper.herokuapp.com
