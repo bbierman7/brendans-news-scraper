@@ -39,7 +39,7 @@ app.get("/", function (req, res) {
     db.Article.find()
 })
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping the Fox Soccer News website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
   axios.get("http://www.foxsports.com/soccer/").then(function(response) {
@@ -126,30 +126,58 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
+//  FIRST use req.params.id to find a single article
+app.get("/articles/:id", function(req, res) {
+      
+  //  SECOND use the found article and look at it's "note" property, which will be an id in the Note collection
+  // app.get("/notes/:id", function(req, res){
+db.Note.findOne(
+  {
+    //Using the id in the url
+    _id: mongojs.ObjectId(req.params.id)
+  },
+  function(error, found) {
+    // log any errors
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      // Otherwise, send the note to the browser
+      // This will fire off the success function of the ajax request
+      console.log(found);
+      res.send(found);
+    }
+  }
 
+  );
 // Delete One from the DB
 app.get("/delete/:id", function(req, res) {
     // Remove a note using the objectID
-    db.notes.remove(
-      {
-        _id: mongojs.ObjectID(req.params.id)
-      },
-      function(error, removed) {
-        // Log any errors from mongojs
-        if (error) {
-          console.log(error);
-          res.send(error);
-        }
-        else {
-          // Otherwise, send the mongojs response to the browser
-          // This will fire off the success function of the ajax request
-          console.log(removed);
-          res.send(removed);
-        }
-      }
-    );
+
+
+    //  THIRD use the note id that we find to "remove" that id from the Note table      
+    
+    db.Note.remove(
+              {
+                _id: id
+              },
+              function(error, removed) {
+                // Log any errors from mongojs
+                if (error) {
+                  console.log(error);
+                  res.send(error);
+                }
+                else {
+                  // Otherwise, send the mongojs response to the browser
+                  // This will fire off the success function of the ajax request
+                  console.log(removed);
+                  res.send(removed);
+                }
+              }
+            );
   });
-  
+});
 
 
 // Start the server

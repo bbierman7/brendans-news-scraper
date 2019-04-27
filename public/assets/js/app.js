@@ -76,7 +76,7 @@ $.getJSON("/articles", function(data) {
   // When user clicks the delete button for a note
 $(document).on("click", "#deletenote", function() {
   // Save the p tag that encloses the button
-  var selected = $(this).parent();
+  var selected = $(this);
   // Make an AJAX GET request to delete the specific note
   // this uses the data-id of the p-tag, which is linked to the specific note
   $.ajax({
@@ -85,11 +85,9 @@ $(document).on("click", "#deletenote", function() {
 
     // On successful call
     success: function(response) {
-      // Remove the p-tag from the DOM
-      selected.remove();
       // Clear the note and title inputs
-      $("#notes").val("");
-      $("#title").val("");
+      $("#titleinput").val("");
+      $("#bodyinput").val("");
       // Make sure the #action-button is submit (in case it's update)
       $("#action-button").html("<button id='make-new'>Submit</button>");
     }
