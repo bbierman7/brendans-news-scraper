@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bbierman7/news-scraper.git"
+    "url": "git+https://github.com/bbierman7/brendans-news-scraper.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bbierman7/news-scraper/issues"
+    "url": "https://github.com/bbierman7/brendans-news-scraper/issues"
   },
-  "homepage": "https://github.com/bbierman7/news-scraper#readme",
+  "homepage": "https://github.com/bbierman7/brendans-news-scraper#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.3",
